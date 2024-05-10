@@ -1,0 +1,34 @@
+body {
+  height: 100%;
+  margin: 0; /* Remove default margin */
+}
+
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  height: 100vh;
+  z-index: 0;
+}
+
+button[type="cancel"] {
+  position: fixed;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 50%; /* Macht den Button rund */
+  border: 1px solid white; /* Fügt eine weiße Kontur hinzu */
+  background-color: transparent; /* Entfernt die Füllung */
+  color: white;
+  width: 5vh;
+  height: 5vh; /* Festlegen der Höhe des Buttons */
+  line-height: 5vh; /* Zentrieren des Textes vertikal */
+  text-align: center; /* Zentrieren des Textes horizontal */
+  font-size: 20px; /* Festlegen der Schriftgröße */
+  font: 100;
+}
