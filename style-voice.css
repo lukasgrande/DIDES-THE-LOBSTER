@@ -15,7 +15,7 @@ canvas {
   z-index: 0;
 }
 
-button[type="cancel"] {
+/*button[type="cancel"] {
   position: fixed;
   top: 85%;
   left: 50%;
