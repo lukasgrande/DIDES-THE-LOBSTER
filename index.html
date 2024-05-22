@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sound</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container-1"></div>
-    <canvas></canvas>
-    <script src="scirpt.js"></script>
-    <button type="cancel"></button>
-  </body>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startscreen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+</head>
+<body>
+    <div class="startscreen">
+        <!-- <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+        <dotlottie-player src="assets/lottie/count-circles.json" background="transparent" speed="1" style="width: 100%; height: 100%" direction="1" playMode="normal" loop autoplay></dotlottie-player> 
+        -->
+    </div>
+    <div class="flow-container" id="flow-container">
+
+      <canvas></canvas>
+      <div class="circle-left opacity-0" id="circle-left" onclick="console.log('animal')"></div>
+      <div class="circle-right opacity-0" id="circle-right"></div>
+      <div class="triangle-container" id="triangle-container">
+        <img src="triangle.svg" alt="Triangle" class="triangle">
+      </div>
+      <div class="cross-container" id="cross-container">
+        <img src="cross.svg" alt="Cross" class="cross">
+      </div>
+    </div>
+
+    <div class="abort-container" id="abort-container">
+        <h1>you won</h1>
+    </div>
+    <script src="circle.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
 </html>
