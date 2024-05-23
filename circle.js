@@ -16,7 +16,7 @@ resizeCanvas();
 
 let centerX = canvas.width / 2 / (window.devicePixelRatio || 1);
 let centerY = canvas.height / 2 / (window.devicePixelRatio || 1);
-let radius = document.body.clientWidth * 0.146;
+let radius = document.body.clientWidth * 0.138;
 let steps = document.body.clientWidth <= 425 ? 60 : 120;
 let interval = 360 / steps;
 let pointsUp = [];
@@ -35,23 +35,15 @@ function initializePoints() {
 
     pointsUp.push({
       angle: angle + angleExtra,
-      x:
-        centerX +
-        radius * Math.cos(((-angle + angleExtra) * Math.PI) / 180) * distUp,
-      y:
-        centerY +
-        radius * Math.sin(((-angle + angleExtra) * Math.PI) / 180) * distUp,
+      x: centerX + radius * Math.cos(((-angle + angleExtra) * Math.PI) / 180) * distUp,
+      y: centerY + radius * Math.sin(((-angle + angleExtra) * Math.PI) / 180) * distUp,
       dist: distUp,
     });
 
     pointsDown.push({
       angle: angle + angleExtra + 5,
-      x:
-        centerX +
-        radius * Math.cos(((-angle + angleExtra + 5) * Math.PI) / 180) * distDown,
-      y:
-        centerY +
-        radius * Math.sin(((-angle + angleExtra + 5) * Math.PI) / 180) * distDown,
+      x: centerX + radius * Math.cos(((-angle + angleExtra + 5) * Math.PI) / 180) * distDown,
+      y: centerY + radius * Math.sin(((-angle + angleExtra + 5) * Math.PI) / 180) * distDown,
       dist: distDown,
     });
   }
@@ -68,6 +60,7 @@ let analyserL, analyserR;
 let splitter;
 let audioDataArrayL, audioDataArrayR;
 let bufferLengthL, bufferLengthR;
+let sourceNode = null; // Store the reference to the MediaElementSourceNode
 
 function initializeAudio() {
   context = new (window.AudioContext || window.webkitAudioContext)();
@@ -90,6 +83,7 @@ function initializeAudio() {
 }
 
 const audio = new Audio();
+const explanationTaskOne = new Audio(); // Add a second audio element
 
 function loadAudio() {
   audio.loop = false;
@@ -104,11 +98,44 @@ function loadAudio() {
   running = true;
 }
 
+function loadExplanationTaskOne() {
+    console.log("Loading explanationTaskOne audio...");
+    // Rest of the function code
+  
+  
+  explanationTaskOne.loop = false;
+  explanationTaskOne.autoplay = false;
+  explanationTaskOne.crossOrigin = "anonymous";
+  explanationTaskOne.addEventListener("canplay", handleCanplay2);
+  explanationTaskOne.addEventListener("error", handleAudioError); // Add error event listener
+  explanationTaskOne.src = "assets/audio/testaudio2.mp3"; // Local sound file for the second audio
+  explanationTaskOne.load();
+  running = true;
+}
+
+function handleAudioError(error) {
+  console.error("Error loading audio:", error);
+}
+audio.addEventListener("error", handleAudioError);
+explanationTaskOne.addEventListener("error", handleAudioError);
+
+
 function handleCanplay() {
-  // connect the audio element to the analyser node and the analyser node
-  const source = context.createMediaElementSource(audio);
-  source.connect(splitter);
-  splitter.connect(context.destination);
+  // Check if the sourceNode is already created
+  if (!sourceNode) {
+    // connect the audio element to the analyser node and the analyser node
+    sourceNode = context.createMediaElementSource(audio);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+
+function handleCanplay2() { // Function to handle canplay event for the second audio
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(explanationTaskOne);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
 }
 
 function toggleAudio() {
@@ -126,6 +153,27 @@ function toggleAudio() {
     audio.pause();
   }
 }
+
+function toggleExplanationTaskOne() { // Function to toggle the second audio
+  console.log("play2 clicked");
+  if (!running) {
+    initializeAudio();
+    loadExplanationTaskOne();
+  }
+
+  console.log("ExplanationTaskOne paused:", explanationTaskOne.paused);
+  
+  if (explanationTaskOne.paused) {
+    context.resume().then(() => {
+      explanationTaskOne.play();
+      console.log("ExplanationTaskOne started playing");
+    });
+  } else {
+    explanationTaskOne.pause();
+  }
+}
+
+
 
 playButton.addEventListener("click", toggleAudio);
 
@@ -164,39 +212,21 @@ function update(dt) {
   analyserR.getByteFrequencyData(audioDataArrayR);
 
   for (let i = 0; i < pointsUp.length; i++) {
-    audioIndex =
-      Math.ceil(pointsUp[i].angle * (bufferLengthL / (pCircle * 2))) | 0;
+    audioIndex = Math.ceil(pointsUp[i].angle * (bufferLengthL / (pCircle * 2))) | 0;
     // get the audio data and make it go from 0 to 1
     audioValue = audioDataArrayL[audioIndex] / 255;
 
     pointsUp[i].dist = 0.9 + audioValue * 0.5;
-    pointsUp[i].x =
-      centerX +
-      radius *
-        Math.cos((-pointsUp[i].angle * Math.PI) / 180) *
-        pointsUp[i].dist;
-    pointsUp[i].y =
-      centerY +
-      radius *
-        Math.sin((-pointsUp[i].angle * Math.PI) / 180) *
-        pointsUp[i].dist;
+    pointsUp[i].x = centerX + radius * Math.cos((-pointsUp[i].angle * Math.PI) / 180) * pointsUp[i].dist;
+    pointsUp[i].y = centerY + radius * Math.sin((-pointsUp[i].angle * Math.PI) / 180) * pointsUp[i].dist;
 
-    audioIndex =
-      Math.ceil(pointsDown[i].angle * (bufferLengthR / (pCircle * 2))) | 0;
+    audioIndex = Math.ceil(pointsDown[i].angle * (bufferLengthR / (pCircle * 2))) | 0;
     // get the audio data and make it go from 0 to 1
     audioValue = audioDataArrayR[audioIndex] / 255;
 
     pointsDown[i].dist = 0.0 + audioValue * 0.2;
-    pointsDown[i].x =
-      centerX +
-      radius *
-        Math.cos((-pointsDown[i].angle * Math.PI) / 180) *
-        pointsDown[i].dist;
-    pointsDown[i].y =
-      centerY +
-      radius *
-        Math.sin((-pointsDown[i].angle * Math.PI) / 180) *
-        pointsDown[i].dist;
+    pointsDown[i].x = centerX + radius * Math.cos((-pointsDown[i].angle * Math.PI) / 180) * pointsDown[i].dist;
+    pointsDown[i].y = centerY + radius * Math.sin((-pointsDown[i].angle * Math.PI) / 180) * pointsDown[i].dist;
   }
 }
 
@@ -214,7 +244,6 @@ function draw(dt) {
 }
 
 draw()
-
 
 // Redraw on resize
 window.addEventListener('resize', () => {

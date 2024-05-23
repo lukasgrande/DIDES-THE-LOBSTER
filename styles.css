@@ -41,7 +41,11 @@ canvas {
 }
 
 .moveDown{
-  transform: translateY(30vh);
+  transform: translateY(40vh);
+}
+
+.moveUp{
+  transform: translateY(0vh);
 }
 
 
@@ -57,12 +61,13 @@ canvas {
 
 .opacity-0{
   opacity: 0 !important;
+  pointer-events: none;
 }
 
 .opacity-1 {
   opacity: 1 !important;
+  pointer-events: auto;
 }
-
 .circle-left {
   opacity: 1;
   width: 27%;
@@ -75,6 +80,7 @@ canvas {
   transform: translateX(30vw);
   max-width: 374px;
   transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .circle-right {
@@ -89,6 +95,21 @@ canvas {
   aspect-ratio: 1 / 1;
   max-width: 374px;
   transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.circle-middle {
+  opacity: 1;
+  width: 27%;
+  height: auto;
+  border-radius: 50%;
+  border: 0px transparent #FFF;
+  box-sizing: border-box;
+  position: absolute;
+  transform: translateX(0vw);
+  aspect-ratio: 1 / 1;
+  max-width: 374px;
+  cursor: pointer;
 }
 
 .triangle-container {
