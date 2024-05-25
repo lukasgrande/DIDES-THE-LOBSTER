@@ -68,7 +68,7 @@ canvas {
   opacity: 1 !important;
   pointer-events: auto;
 }
-.circle-left {
+.circle-right {
   opacity: 1;
   width: 27%;
   height: auto;
@@ -83,7 +83,7 @@ canvas {
   cursor: pointer;
 }
 
-.circle-right {
+.circle-left {
   opacity: 1;
   width: 27%;
   height: auto;
@@ -110,6 +110,22 @@ canvas {
   aspect-ratio: 1 / 1;
   max-width: 374px;
   cursor: pointer;
+}
+
+.circle-taskOne {
+  opacity: 1;
+  width: 27%;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid #FFF;
+  background-color: black;
+  box-sizing: border-box;
+  position: absolute;
+  transform: translateX(0vw);
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: width 1s ease-in-out, height 1s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for width, height, and opacity */
 }
 
 .triangle-container {
@@ -141,9 +157,22 @@ canvas {
   display: none;
   opacity: 0;
   transition: transform 1s ease-in-out, opacity 0.3s;
+  z-index: 3;
 }
 
 .cross {
   width: 100%;
   height: 100%;
+}
+
+.lottie-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  scale: 1.015;
 }
