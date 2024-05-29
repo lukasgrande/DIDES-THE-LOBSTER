@@ -34,6 +34,7 @@ canvas {
   width: 100%;
   position: absolute;
   pointer-events: none;
+  background-color: white;
 }
 
 .abort-container h1{
@@ -112,9 +113,55 @@ canvas {
   cursor: pointer;
 }
 
+.one-container{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.one-container:hover {
+  transform: translateX(0vw) scale(1.1);
+}
+
+.two-container{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translateX(30vw);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.two-container:hover {
+  transform: translateX(30vw) scale(1.1);
+}
+.three-container{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translateX(-30vw);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.three-container:hover {
+  transform: translateX(-30vw) scale(1.1);
+}
+
 .circle-taskOne {
   opacity: 1;
-  width: 27%;
+  width: 25%;
   height: auto;
   border-radius: 50%;
   border: 2px solid #FFF;
@@ -141,11 +188,13 @@ canvas {
 
 .triangle-container:hover {
   transform: scale(1.1);
+  
 }
 
 .triangle {
   width: 100%;
   height: 100%;
+  
 }
 
 .cross-container{
@@ -156,8 +205,10 @@ canvas {
   position: absolute;
   display: none;
   opacity: 0;
-  transition: transform 1s ease-in-out, opacity 0.3s;
+  transition: transform 1s ease-in-out, opacity 1s;
   z-index: 3;
+  background-color: black;
+  
 }
 
 .cross {

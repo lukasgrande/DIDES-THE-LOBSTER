@@ -4,12 +4,18 @@ let clickCount = 0;
 const triangleContainer = document.getElementById("triangle-container");
 const crossContainer = document.getElementById("cross-container");
 const circleLeft = document.getElementById("circle-left");
+const three = document.getElementById("three-container");
 const circleRight = document.getElementById("circle-right");
+const two = document.getElementById("two-container");
 const circleMiddle = document.getElementById("circle-middle");
+const one = document.getElementById("one-container");
 const flowContainer = document.getElementById("flow-container");
 const abortContainer = document.getElementById("abort-container");
 const lottieContainer = document.getElementById("lottie-container");
+const lottiePlayer = document.getElementById("lottie-player");
 const circleTaskOne = document.getElementById("circle-taskOne");
+const lottieContainer2 = document.getElementById("lottie-container2");
+const lottiePlayer2 = document.getElementById("lottie-player2");
 
 function increaseStage() {
   stage++;
@@ -28,9 +34,20 @@ function increaseStage() {
     explanationTaskTwoScreen();
   } else if (stage === 6) {
     countDotsScreen();
+  } else if (stage === 7) {
+    explanationTaskThreeScreen();
+  } else if (stage === 8) {
+    chooseDilemma();
+  } else if (stage === 9) {
+    explanationTaskFourScreen();
+  } else if (stage === 10) {
+    goThroughIt();
+  } else if (stage === 11) {
+    completionAudio();
+  } else if (stage === 12) {
+    reload();
   }
 }
-
 document.addEventListener("DOMContentLoaded", function () {
   triangleContainer.addEventListener("click", function () {
     // Hide the triangle container
@@ -41,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Show the new element (cross)
       crossContainer.style.display = "block";
       crossContainer.style.opacity = "1";
-    }, 300); // Duration should match the CSS transition time
+    }, 400); // Duration should match the CSS transition time
   });
 
   circleLeft.addEventListener("click", function () {
@@ -51,6 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
     increaseStage();
   });
   circleMiddle.addEventListener("click", function () {
+    increaseStage();
+  });
+  one.addEventListener("click", function () {
+    increaseStage();
+  });
+  two.addEventListener("click", function () {
+    increaseStage();
+  });
+  three.addEventListener("click", function () {
     increaseStage();
   });
 
@@ -63,6 +89,7 @@ function abortFlow() {
   //toggle everything from the flow container with opacity 0
   flowContainer.classList.toggle("opacity-0");
   abortContainer.classList.toggle("opacity-1");
+
   console.log("abort");
 }
 
@@ -71,9 +98,20 @@ function chooseAnimal() {
   console.log("Choose Animal Screen for stage 2");
   //add a new css class to crossContainer
   crossContainer.classList.toggle("moveDown");
-  circleLeft.classList.toggle("opacity-1");
-  circleRight.classList.toggle("opacity-1");
-  circleMiddle.classList.toggle("opacity-1");
+  setTimeout(() => {
+    circleLeft.classList.toggle("opacity-1");
+    three.classList.toggle("opacity-1");
+  }, 5000);
+
+  setTimeout(() => {
+    circleRight.classList.toggle("opacity-1");
+    two.classList.toggle("opacity-1");
+  }, 3000);
+
+  setTimeout(() => {
+    circleMiddle.classList.toggle("opacity-1");
+    one.classList.toggle("opacity-1");
+  }, 1000);
 }
 
 function explanationTaskOneScreen() {
@@ -83,9 +121,14 @@ function explanationTaskOneScreen() {
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
   circleMiddle.classList.toggle("opacity-1");
+  one.classList.toggle("opacity-1");
+  two.classList.toggle("opacity-1");
+  three.classList.toggle("opacity-1");
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
-  toggleExplanationTaskOne();
+  setTimeout(() => {
+    toggleExplanationTaskOne();
+  }, 1000);
 }
 
 function taskOne() {
@@ -108,6 +151,21 @@ explanationTaskTwo.addEventListener("ended", function () {
   increaseStage(); // Check if increaseStage is called
 });
 
+explanationTaskThree.addEventListener("ended", function () {
+  console.log("explanationTaskThree finished playing");
+  increaseStage();
+});
+
+explanationTaskFour.addEventListener("ended", function () {
+  console.log("explanationTaskFour finished playing");
+  increaseStage();
+});
+
+completion.addEventListener("ended", function () {
+  console.log("completion finished playing");
+  increaseStage();
+});
+
 // Check for any errors during audio loading
 explanationTaskOne.addEventListener("error", function (event) {
   console.error("Error loading audio:", event);
@@ -116,9 +174,9 @@ explanationTaskOne.addEventListener("error", function (event) {
 function increaseSizeCircleClick() {
   clickCount++; // Increment the click count
 
-  // Calculate the new size (increase by 40% each click)
+  // Calculate the new size (increase by 50% each click)
   const currentWidth = parseFloat(getComputedStyle(circleTaskOne).width);
-  const newSize = currentWidth * 1.4; // Increase by 40%
+  const newSize = currentWidth * 1.5; // Increase by 50%
   circleTaskOne.style.width = newSize + "px";
   circleTaskOne.style.height = newSize + "px"; // Ensure it remains a circle
 
@@ -146,7 +204,9 @@ function explanationTaskTwoScreen() {
   console.log("Explanation Task 2 for stage 5");
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
-  toggleExplanationTaskTwo();
+  setTimeout(() => {
+    toggleExplanationTaskTwo();
+  }, 1000);
 }
 
 function countDotsScreen() {
@@ -154,4 +214,76 @@ function countDotsScreen() {
   crossContainer.classList.toggle("moveUp");
   lottieContainer.classList.toggle("opacity-1");
   lottiePlayer.play();
+
+  setTimeout(() => {
+    circleLeft.classList.toggle("opacity-1");
+  }, 31000);
+  setTimeout(() => {
+    circleRight.classList.toggle("opacity-1");
+  }, 29000);
+
+  setTimeout(() => {
+    circleMiddle.classList.toggle("opacity-1");
+  }, 27000);
+}
+function explanationTaskThreeScreen() {
+  // Corrected function name
+  // Implement logic to show another new content for stage 5
+  console.log("Explanation Task 3 for stage 7");
+  circleLeft.classList.toggle("opacity-1");
+  circleRight.classList.toggle("opacity-1");
+  circleMiddle.classList.toggle("opacity-1");
+  crossContainer.classList.toggle("moveUp");
+  crossContainer.classList.toggle("moveDown");
+  setTimeout(() => {
+    toggleExplanationTaskThree();
+  }, 1000);
+}
+
+function chooseDilemma() {
+  crossContainer.classList.toggle("moveDown");
+  crossContainer.classList.toggle("moveUp");
+  setTimeout(() => {
+    circleLeft.classList.toggle("opacity-1");
+  }, 5000);
+  setTimeout(() => {
+    circleRight.classList.toggle("opacity-1");
+  }, 3000);
+
+  setTimeout(() => {
+    circleMiddle.classList.toggle("opacity-1");
+  }, 1000);
+}
+
+function explanationTaskFourScreen() {
+  crossContainer.classList.toggle("moveUp");
+  crossContainer.classList.toggle("moveDown");
+  circleLeft.classList.toggle("opacity-1");
+  circleRight.classList.toggle("opacity-1");
+  circleMiddle.classList.toggle("opacity-1");
+  setTimeout(() => {
+    toggleExplanationTaskFour();
+  }, 1000);
+}
+
+function goThroughIt() {
+  crossContainer.classList.toggle("moveDown");
+  crossContainer.classList.toggle("moveUp");
+  lottieContainer2.classList.toggle("opacity-1");
+  lottiePlayer2.play();
+  setTimeout(() => {
+    increaseStage();
+  }, 5000);
+}
+
+function completionAudio() {
+  crossContainer.classList.toggle("moveUp");
+  crossContainer.classList.toggle("moveDown");
+  setTimeout(() => {
+    toggleCompletion();
+  }, 1000);
+}
+
+function reload() {
+  location.reload();
 }

@@ -97,6 +97,9 @@ function initializeAudio() {
 const audio = new Audio();
 const explanationTaskOne = new Audio();
 const explanationTaskTwo = new Audio();
+const explanationTaskThree = new Audio();
+const explanationTaskFour = new Audio();
+const completion = new Audio();
 
 function loadAudio() {
   audio.loop = false;
@@ -120,7 +123,7 @@ function loadExplanationTaskOne() {
   explanationTaskOne.crossOrigin = "anonymous";
   explanationTaskOne.addEventListener("canplay", handleCanplay2);
   explanationTaskOne.addEventListener("error", handleAudioError); // Add error event listener
-  explanationTaskOne.src = "assets/audio/testaudio2.mp3"; // Local sound file for the second audio
+  explanationTaskOne.src = "assets/audio/testaudio.mp3"; // Local sound file for the second audio
   explanationTaskOne.load();
   running = true;
 }
@@ -134,8 +137,47 @@ function loadExplanationTaskTwo() {
   explanationTaskTwo.crossOrigin = "anonymous";
   explanationTaskTwo.addEventListener("canplay", handleCanplay3);
   explanationTaskTwo.addEventListener("error", handleAudioError); // Add error event listener
-  explanationTaskTwo.src = "assets/audio/testaudio3.mp3"; // Local sound file for the second audio
+  explanationTaskTwo.src = "assets/audio/testaudio.mp3"; // Local sound file for the second audio
   explanationTaskTwo.load();
+  running = true;
+}
+
+function loadExplanationTaskThree() {
+  console.log("Loading explanationTaskThree audio...");
+  // Rest of the function code
+
+  explanationTaskThree.loop = false;
+  explanationTaskThree.autoplay = false;
+  explanationTaskThree.crossOrigin = "anonymous";
+  explanationTaskThree.addEventListener("canplay", handleCanplay4);
+  explanationTaskThree.addEventListener("error", handleAudioError);
+  explanationTaskThree.src = "assets/audio/testaudio.mp3";
+  explanationTaskThree.load();
+  running = true;
+}
+
+function loadExplanationTaskFour() {
+  console.log("Loading explanationTaskFour audio...");
+  // Rest of the function code
+
+  explanationTaskFour.loop = false;
+  explanationTaskFour.autoplay = false;
+  explanationTaskFour.crossOrigin = "anonymous";
+  explanationTaskFour.addEventListener("canplay", handleCanplay5);
+  explanationTaskFour.addEventListener("error", handleAudioError);
+  explanationTaskFour.src = "assets/audio/testaudio.mp3";
+  explanationTaskFour.load();
+  running = true;
+}
+function loadCompletion() {
+  console.log("Loading completion audio...");
+  completion.loop = false;
+  completion.autoplay = false;
+  completion.crossOrigin = "anonymous";
+  completion.addEventListener("canplay", handleCanplay6);
+  completion.addEventListener("error", handleAudioError);
+  completion.src = "assets/audio/testaudio.mp3";
+  completion.load();
   running = true;
 }
 
@@ -165,9 +207,31 @@ function handleCanplay2() {
 }
 
 function handleCanplay3() {
-  // Function to handle canplay event for the second audio
   if (!sourceNode) {
     sourceNode = context.createMediaElementSource(explanationTaskTwo);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+
+function handleCanplay4() {
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(explanationTaskThree);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+
+function handleCanplay5() {
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(explanationTaskFour);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+function handleCanplay6() {
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(completion);
     sourceNode.connect(splitter);
     splitter.connect(context.destination);
   }
@@ -211,9 +275,7 @@ function toggleExplanationTaskOne() {
 }
 
 function toggleExplanationTaskTwo() {
-  // Function to toggle the second audio
   console.log("play3 clicked");
-  // TODO: actually set running to false(otherwise it will always be true)
   if (!running) {
     initializeAudio();
     loadExplanationTaskTwo();
@@ -228,6 +290,62 @@ function toggleExplanationTaskTwo() {
     });
   } else {
     explanationTaskTwo.pause();
+  }
+}
+
+function toggleExplanationTaskThree() {
+  console.log("play4 clicked");
+  if (!running) {
+    initializeAudio();
+    loadExplanationTaskThree();
+  }
+
+  console.log("ExplanationTaskThree paused:", explanationTaskThree.paused);
+
+  if (explanationTaskThree.paused) {
+    context.resume().then(() => {
+      explanationTaskThree.play();
+      console.log("ExplanationTaskThree started playing");
+    });
+  } else {
+    explanationTaskThree.pause();
+  }
+}
+
+function toggleExplanationTaskFour() {
+  console.log("play5 clicked");
+  if (!running) {
+    initializeAudio();
+    loadExplanationTaskFour();
+  }
+
+  console.log("ExplanationTaskFour paused:", explanationTaskFour.paused);
+
+  if (explanationTaskFour.paused) {
+    context.resume().then(() => {
+      explanationTaskFour.play();
+      console.log("ExplanationTaskFour started playing");
+    });
+  } else {
+    explanationTaskFour.pause();
+  }
+}
+function toggleCompletion() {
+  console.log("play6 clicked");
+  if (!running) {
+    initializeAudio();
+    loadCompletion();
+  }
+
+  console.log("Completion paused:", completion.paused);
+
+  if (completion.paused) {
+    context.resume().then(() => {
+      completion.play();
+      console.log("completion started playing");
+    });
+  } else {
+    completion.pause();
   }
 }
 
