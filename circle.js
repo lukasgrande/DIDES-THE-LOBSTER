@@ -1,6 +1,7 @@
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 let playButton = document.getElementById("triangle-container");
+let isAborted = false;
 
 // Set the canvas to the correct size for the display
 function resizeCanvas() {
@@ -99,7 +100,10 @@ const explanationTaskOne = new Audio();
 const explanationTaskTwo = new Audio();
 const explanationTaskThree = new Audio();
 const explanationTaskFour = new Audio();
-const completion = new Audio();
+const completionCow = new Audio();
+const completionPig = new Audio();
+const completionDonkey = new Audio();
+const happyEnding = new Audio();
 
 function loadAudio() {
   audio.loop = false;
@@ -109,7 +113,7 @@ function loadAudio() {
   // call `handleCanplay` when music can be played
   audio.addEventListener("canplay", handleCanplay);
   // Change the URL here accordingly
-  audio.src = "assets/audio/testaudio.mp3"; // Local sound file
+  audio.src = "assets/audio/Testaudio.mp3"; // Local sound file
   audio.load();
   running = true;
 }
@@ -123,7 +127,7 @@ function loadExplanationTaskOne() {
   explanationTaskOne.crossOrigin = "anonymous";
   explanationTaskOne.addEventListener("canplay", handleCanplay2);
   explanationTaskOne.addEventListener("error", handleAudioError); // Add error event listener
-  explanationTaskOne.src = "assets/audio/testaudio.mp3"; // Local sound file for the second audio
+  explanationTaskOne.src = "assets/audio/Testaudio.mp3"; // Local sound file for the second audio
   explanationTaskOne.load();
   running = true;
 }
@@ -137,7 +141,7 @@ function loadExplanationTaskTwo() {
   explanationTaskTwo.crossOrigin = "anonymous";
   explanationTaskTwo.addEventListener("canplay", handleCanplay3);
   explanationTaskTwo.addEventListener("error", handleAudioError); // Add error event listener
-  explanationTaskTwo.src = "assets/audio/testaudio.mp3"; // Local sound file for the second audio
+  explanationTaskTwo.src = "assets/audio/Testaudio.mp3"; // Local sound file for the second audio
   explanationTaskTwo.load();
   running = true;
 }
@@ -151,7 +155,7 @@ function loadExplanationTaskThree() {
   explanationTaskThree.crossOrigin = "anonymous";
   explanationTaskThree.addEventListener("canplay", handleCanplay4);
   explanationTaskThree.addEventListener("error", handleAudioError);
-  explanationTaskThree.src = "assets/audio/testaudio.mp3";
+  explanationTaskThree.src = "assets/audio/Testaudio.mp3";
   explanationTaskThree.load();
   running = true;
 }
@@ -165,19 +169,55 @@ function loadExplanationTaskFour() {
   explanationTaskFour.crossOrigin = "anonymous";
   explanationTaskFour.addEventListener("canplay", handleCanplay5);
   explanationTaskFour.addEventListener("error", handleAudioError);
-  explanationTaskFour.src = "assets/audio/testaudio.mp3";
+  explanationTaskFour.src = "assets/audio/Testaudio.mp3";
   explanationTaskFour.load();
   running = true;
 }
-function loadCompletion() {
-  console.log("Loading completion audio...");
-  completion.loop = false;
-  completion.autoplay = false;
-  completion.crossOrigin = "anonymous";
-  completion.addEventListener("canplay", handleCanplay6);
-  completion.addEventListener("error", handleAudioError);
-  completion.src = "assets/audio/testaudio.mp3";
-  completion.load();
+function loadcompletionCow() {
+  console.log("Loading completionCow audio...");
+  completionCow.loop = false;
+  completionCow.autoplay = false;
+  completionCow.crossOrigin = "anonymous";
+  completionCow.addEventListener("canplay", handleCanplay6);
+  completionCow.addEventListener("error", handleAudioError);
+  completionCow.src = "assets/audio/completionCow.mp3";
+  completionCow.load();
+  running = true;
+}
+
+function loadcompletionPig() {
+  console.log("Loading Pig audio...");
+  completionPig.loop = false;
+  completionPig.autoplay = false;
+  completionPig.crossOrigin = "anonymous";
+  completionPig.addEventListener("canplay", handleCanplay7);
+  completionPig.addEventListener("error", handleAudioError);
+  completionPig.src = "assets/audio/completionPig.mp3";
+  completionPig.load();
+  running = true;
+}
+
+function loadcompletionDonkey() {
+  console.log("Loading Donkey audio...");
+  completionDonkey.loop = false;
+  completionDonkey.autoplay = false;
+  completionDonkey.crossOrigin = "anonymous";
+  completionDonkey.addEventListener("canplay", handleCanplay8);
+  completionDonkey.addEventListener("error", handleAudioError);
+  completionDonkey.src = "assets/audio/completionDonkey.mp3";
+  completionDonkey.load();
+  running = true;
+}
+
+function loadHappyEnding() {
+  console.log("Loading HappyEnding audio...");
+  happyEnding.loop = false;
+  happyEnding.autoplay = false;
+  happyEnding.crossOrigin = "anonymous";
+  happyEnding.addEventListener("canplay", handleCanplay9);
+  happyEnding.addEventListener("error", handleAudioError);
+  happyEnding.src = "assets/audio/HappyEnding.mp3";
+  happyEnding.load();
   running = true;
 }
 
@@ -231,7 +271,29 @@ function handleCanplay5() {
 }
 function handleCanplay6() {
   if (!sourceNode) {
-    sourceNode = context.createMediaElementSource(completion);
+    sourceNode = context.createMediaElementSource(completionCow);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+function handleCanplay7() {
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(completionPig);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+function handleCanplay8() {
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(completionDonkey);
+    sourceNode.connect(splitter);
+    splitter.connect(context.destination);
+  }
+}
+
+function handleCanplay9() {
+  if (!sourceNode) {
+    sourceNode = context.createMediaElementSource(happyEnding);
     sourceNode.connect(splitter);
     splitter.connect(context.destination);
   }
@@ -330,22 +392,83 @@ function toggleExplanationTaskFour() {
     explanationTaskFour.pause();
   }
 }
-function toggleCompletion() {
-  console.log("play6 clicked");
+
+function playCowEnding() {
+  console.log("playing the cow ending");
+}
+
+function togglecompletionCow() {
+  console.log("completecow ");
   if (!running) {
     initializeAudio();
-    loadCompletion();
+    loadcompletionCow();
   }
 
-  console.log("Completion paused:", completion.paused);
-
-  if (completion.paused) {
+  if (completionCow.paused) {
     context.resume().then(() => {
-      completion.play();
-      console.log("completion started playing");
+      completionCow.play();
+      console.log("completionCow started playing");
     });
   } else {
-    completion.pause();
+    completionCow.pause();
+  }
+}
+function playPigEnding() {
+  console.log("playing the pig ending");
+}
+
+function togglecompletionPig() {
+  console.log("completePig ");
+  if (!running) {
+    initializeAudio();
+    loadcompletionPig();
+  }
+
+  if (completionPig.paused) {
+    context.resume().then(() => {
+      completionPig.play();
+      console.log("completionCow started playing");
+    });
+  } else {
+    completionPig.pause();
+  }
+}
+
+function playDonkeyEnding() {
+  console.log("playing the Donkey ending");
+}
+
+function togglecompletionDonkey() {
+  console.log("completeDonkey ");
+  if (!running) {
+    initializeAudio();
+    loadcompletionDonkey();
+  }
+
+  if (completionDonkey.paused) {
+    context.resume().then(() => {
+      completionDonkey.play();
+      console.log("completionDonkey started playing");
+    });
+  } else {
+    completionDonkey.pause();
+  }
+}
+
+function toggleHappyEnding() {
+  console.log("HAPPY clicked");
+  if (!running) {
+    initializeAudio();
+    loadHappyEnding();
+  }
+
+  if (happyEnding.paused) {
+    context.resume().then(() => {
+      happyEnding.play();
+      console.log("happyEnding started playing");
+    });
+  } else {
+    happyEnding.pause();
   }
 }
 
@@ -365,7 +488,11 @@ function drawLine(points) {
   let origin = points[0];
 
   ctx.beginPath();
-  ctx.strokeStyle = "rgba(255,255,255,1)";
+  if (isAborted) {
+    ctx.strokeStyle = "rgba(0,0,0,1)";
+  } else {
+    ctx.strokeStyle = "rgba(255,255,255,1)";
+  }
   ctx.lineJoin = "round";
   ctx.lineWidth = 2; // Adjust the thickness here
   ctx.moveTo(origin.x, origin.y);
@@ -408,7 +535,7 @@ function update(dt) {
     // get the audio data and make it go from 0 to 1
     audioValue = audioDataArrayR[audioIndex] / 255;
 
-    pointsDown[i].dist = 0.0 + audioValue * 0.2;
+    pointsDown[i].dist = 0.0 + audioValue * 0.0;
     pointsDown[i].x =
       centerX +
       radius *

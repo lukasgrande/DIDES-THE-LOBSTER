@@ -1,14 +1,18 @@
 let stage = 1;
 let clickCount = 0;
+let chosenAnimal = "";
 
 const triangleContainer = document.getElementById("triangle-container");
 const crossContainer = document.getElementById("cross-container");
 const circleLeft = document.getElementById("circle-left");
 const three = document.getElementById("three-container");
+const threeThree = document.getElementById("threeThree-container");
 const circleRight = document.getElementById("circle-right");
 const two = document.getElementById("two-container");
+const twoTwo = document.getElementById("twoTwo-container");
 const circleMiddle = document.getElementById("circle-middle");
 const one = document.getElementById("one-container");
+const oneOne = document.getElementById("oneOne-container");
 const flowContainer = document.getElementById("flow-container");
 const abortContainer = document.getElementById("abort-container");
 const lottieContainer = document.getElementById("lottie-container");
@@ -16,6 +20,39 @@ const lottiePlayer = document.getElementById("lottie-player");
 const circleTaskOne = document.getElementById("circle-taskOne");
 const lottieContainer2 = document.getElementById("lottie-container2");
 const lottiePlayer2 = document.getElementById("lottie-player2");
+const thirteen = document.getElementById("thirteen-container");
+const nineteen = document.getElementById("nineteen-container");
+const eighteen = document.getElementById("eighteen-container");
+const sticker = document.getElementById("sticker");
+
+const cowSound = new Audio("assets/audio/cow.mp3");
+const pigSound = new Audio("assets/audio/pig.mp3");
+const donkeySound = new Audio("assets/audio/donkey.mp3");
+const task4 = new Audio("assets/audio/Awful.mp3");
+
+function playCow() {
+  cowSound.preload = "auto";
+  cowSound.currentTime = 0; // Reset the audio to the beginning
+  cowSound.play(); // Play the audio
+}
+
+function playPig() {
+  pigSound.preload = "auto";
+  pigSound.currentTime = 0; // Reset the audio to the beginning
+  pigSound.play(); // Play the audio
+}
+
+function playDonkey() {
+  donkeySound.preload = "auto";
+  donkeySound.currentTime = 0; // Reset the audio to the beginning
+  donkeySound.play(); // Play the audio
+}
+
+function playAwful() {
+  task4.preload = "auto";
+  task4.currentTime = 0; // Reset the audio to the beginning
+  task4.play(); // Play the audio
+}
 
 function increaseStage() {
   stage++;
@@ -48,6 +85,7 @@ function increaseStage() {
     reload();
   }
 }
+
 document.addEventListener("DOMContentLoaded", function () {
   triangleContainer.addEventListener("click", function () {
     // Hide the triangle container
@@ -57,26 +95,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Show the new element (cross)
       crossContainer.style.display = "block";
-      crossContainer.style.opacity = "1";
-    }, 400); // Duration should match the CSS transition time
+      setTimeout(() => {
+        crossContainer.style.opacity = "1";
+
+        // Trigger the hover effect automatically after 5 seconds
+        setTimeout(() => {
+          crossContainer.classList.add("hovered");
+          setTimeout(() => {
+            crossContainer.classList.remove("hovered");
+          }, 2000); // Duration of the automatic hover effect
+        }, 0); // Delay before applying the hovered class
+      }, 0); // Ensure this runs after the display is set to block
+    }, 38000); // Duration should match the CSS transition time
   });
 
-  circleLeft.addEventListener("click", function () {
+  eighteen.addEventListener("click", function () {
     increaseStage();
   });
-  circleRight.addEventListener("click", function () {
-    increaseStage();
+  nineteen.addEventListener("click", function () {
+    if (stage == 6) {
+      restartCountDotsScreen();
+    } else {
+      increaseStage();
+    }
   });
-  circleMiddle.addEventListener("click", function () {
-    increaseStage();
+  thirteen.addEventListener("click", function () {
+    if (stage == 6) {
+      restartCountDotsScreen();
+    } else {
+      increaseStage();
+    }
   });
   one.addEventListener("click", function () {
+    chosenAnimal = "donkey";
     increaseStage();
   });
   two.addEventListener("click", function () {
+    chosenAnimal = "pig";
     increaseStage();
   });
   three.addEventListener("click", function () {
+    chosenAnimal = "cow";
+    increaseStage();
+  });
+  three.addEventListener("mouseenter", function () {
+    playCow();
+  });
+  three.addEventListener("mouseleave", function () {
+    cowSound.pause();
+  });
+
+  two.addEventListener("mouseenter", function () {
+    playPig();
+  });
+  two.addEventListener("mouseleave", function () {
+    pigSound.pause();
+  });
+
+  one.addEventListener("mouseenter", function () {
+    playDonkey();
+  });
+  one.addEventListener("mouseleave", function () {
+    donkeySound.pause();
+  });
+
+  oneOne.addEventListener("click", function () {
+    increaseStage();
+  });
+
+  twoTwo.addEventListener("click", function () {
+    increaseStage();
+  });
+
+  threeThree.addEventListener("click", function () {
     increaseStage();
   });
 
@@ -86,10 +177,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function abortFlow() {
+  audio.pause();
+  explanationTaskOne.pause();
+  explanationTaskTwo.pause();
+  explanationTaskThree.pause();
+  explanationTaskFour.pause();
+  completionCow.pause();
+
+  circleLeft.classList.remove("opacity-1");
+  ///circle left and right to opacity 0 or / and remove opacity-1
+
   //toggle everything from the flow container with opacity 0
+  isAborted = true;
+  document.body.style = "background: white;";
   flowContainer.classList.toggle("opacity-0");
   abortContainer.classList.toggle("opacity-1");
-
+  setTimeout(() => {
+    toggleHappyEnding();
+  }, 100);
+  setTimeout(() => {
+    sticker.classList.toggle("opacity-1");
+  }, 15000);
   console.log("abort");
 }
 
@@ -101,17 +209,16 @@ function chooseAnimal() {
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
     three.classList.toggle("opacity-1");
-  }, 5000);
+  }, 1500);
 
   setTimeout(() => {
     circleRight.classList.toggle("opacity-1");
     two.classList.toggle("opacity-1");
-  }, 3000);
+  }, 1000);
 
   setTimeout(() => {
-    circleMiddle.classList.toggle("opacity-1");
     one.classList.toggle("opacity-1");
-  }, 1000);
+  }, 500);
 }
 
 function explanationTaskOneScreen() {
@@ -120,7 +227,6 @@ function explanationTaskOneScreen() {
   console.log("Explanation Task 1 for stage 3");
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
-  circleMiddle.classList.toggle("opacity-1");
   one.classList.toggle("opacity-1");
   two.classList.toggle("opacity-1");
   three.classList.toggle("opacity-1");
@@ -158,11 +264,6 @@ explanationTaskThree.addEventListener("ended", function () {
 
 explanationTaskFour.addEventListener("ended", function () {
   console.log("explanationTaskFour finished playing");
-  increaseStage();
-});
-
-completion.addEventListener("ended", function () {
-  console.log("completion finished playing");
   increaseStage();
 });
 
@@ -216,23 +317,56 @@ function countDotsScreen() {
   lottiePlayer.play();
 
   setTimeout(() => {
+    eighteen.classList.toggle("opacity-1");
     circleLeft.classList.toggle("opacity-1");
-  }, 31000);
+  }, 27000);
   setTimeout(() => {
+    nineteen.classList.toggle("opacity-1");
     circleRight.classList.toggle("opacity-1");
-  }, 29000);
+  }, 26000);
+  setTimeout(() => {
+    thirteen.classList.toggle("opacity-1");
+  }, 25000);
+}
+
+function restartCountDotsScreen() {
+  lottieContainer.classList.toggle("opacity-0");
+  lottiePlayer.stop();
+  lottiePlayer.play();
 
   setTimeout(() => {
-    circleMiddle.classList.toggle("opacity-1");
+    circleLeft.classList.toggle("opacity-1");
+    eighteen.classList.toggle("opacity-1");
+  }, 310);
+  setTimeout(() => {
+    circleRight.classList.toggle("opacity-1");
+    nineteen.classList.toggle("opacity-1");
+  }, 290);
+
+  setTimeout(() => {}, 270);
+  setTimeout(() => {
+    circleLeft.classList.toggle("opacity-1");
+    eighteen.classList.toggle("opacity-1");
   }, 27000);
+  setTimeout(() => {
+    circleRight.classList.toggle("opacity-1");
+    nineteen.classList.toggle("opacity-1");
+  }, 26000);
+
+  setTimeout(() => {
+    thirteen.classList.toggle("opacity-1");
+  }, 25000);
 }
+
 function explanationTaskThreeScreen() {
   // Corrected function name
   // Implement logic to show another new content for stage 5
   console.log("Explanation Task 3 for stage 7");
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
-  circleMiddle.classList.toggle("opacity-1");
+  thirteen.classList.toggle("opacity-1");
+  eighteen.classList.toggle("opacity-1");
+  nineteen.classList.toggle("opacity-1");
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
@@ -245,22 +379,25 @@ function chooseDilemma() {
   crossContainer.classList.toggle("moveUp");
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
-  }, 5000);
+    threeThree.classList.toggle("opacity-1");
+  }, 3000);
   setTimeout(() => {
     circleRight.classList.toggle("opacity-1");
-  }, 3000);
-
+    twoTwo.classList.toggle("opacity-1");
+  }, 2000);
   setTimeout(() => {
-    circleMiddle.classList.toggle("opacity-1");
+    oneOne.classList.toggle("opacity-1");
   }, 1000);
 }
 
 function explanationTaskFourScreen() {
+  oneOne.classList.toggle("opacity-1");
+  twoTwo.classList.toggle("opacity-1");
+  threeThree.classList.toggle("opacity-1");
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
-  circleMiddle.classList.toggle("opacity-1");
   setTimeout(() => {
     toggleExplanationTaskFour();
   }, 1000);
@@ -269,19 +406,49 @@ function explanationTaskFourScreen() {
 function goThroughIt() {
   crossContainer.classList.toggle("moveDown");
   crossContainer.classList.toggle("moveUp");
-  lottieContainer2.classList.toggle("opacity-1");
-  lottiePlayer2.play();
+  circleMiddle.classList.toggle("opacity-0");
   setTimeout(() => {
+    circleMiddle.classList.toggle("opacity-1");
+  }, 1500);
+  setTimeout(() => {
+    lottieContainer2.classList.toggle("opacity-1");
+    lottiePlayer2.play();
+    playAwful();
+  }, 2000);
+
+  setTimeout(() => {
+    lottiePlayer2.pause();
     increaseStage();
-  }, 5000);
+    crossContainer.classList.toggle("opacity-0");
+  }, 132000);
 }
 
 function completionAudio() {
-  crossContainer.classList.toggle("moveUp");
-  crossContainer.classList.toggle("moveDown");
+  lottieContainer2.classList.toggle("opacity-1");
   setTimeout(() => {
-    toggleCompletion();
+    circleMiddle.classList.toggle("opacity-1");
+    circleMiddle.classList.toggle("opacity-0");
   }, 1000);
+
+  setTimeout(() => {
+    console.log("completionCow paused:", completionCow.paused);
+    console.log(chosenAnimal, "selected");
+    if (chosenAnimal === "cow") {
+      console.log("user chose cow");
+      togglecompletionCow();
+    }
+    if (chosenAnimal === "donkey") {
+      console.log("user chose donkey");
+      togglecompletionDonkey();
+    }
+    if (chosenAnimal === "pig") {
+      console.log("user chose pig");
+      togglecompletionPig();
+    }
+  }, 2000);
+  setTimeout(() => {
+    location.reload();
+  }, 39000);
 }
 
 function reload() {
