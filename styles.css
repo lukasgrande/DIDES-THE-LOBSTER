@@ -82,7 +82,7 @@ canvas {
   transform: translateX(30vw);
   max-width: 374px;
   transition: opacity 0.3s;
-  cursor: pointer;
+  
 }
 
 .circle-left {
@@ -97,7 +97,7 @@ canvas {
   aspect-ratio: 1 / 1;
   max-width: 374px;
   transition: opacity 0.3s;
-  cursor: pointer;
+  
 }
 
 .circle-middle {
@@ -112,7 +112,7 @@ canvas {
   transform: translateX(0vw);
   aspect-ratio: 1 / 1;
   max-width: 380x;
-  cursor: pointer;
+  
 }
 .thirteen-container{
   width: 100px;
@@ -327,7 +327,7 @@ canvas {
   opacity: 1; /* Adjust opacity as needed */
   z-index: 0; /* Ensure it's below the cross */
   pointer-events: none; /* Ensure the overlay does not block interactions */
-  transition: background-color .5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 }
 
 .cross-container:hover::after,
@@ -353,14 +353,14 @@ canvas {
   z-index: 2; /* Ensure the cross is above the red overlay */
 }
 
-
-/* Red overlay effect */
-
+/* Initial state for the red overlay effect */
 .cross-container::before,
 .cross-container::after {
   content: "";
   background-color: black;
+  transition: background-color 0.5s ease-in-out;
 }
+
 
 .lottie-container {
   position: absolute;

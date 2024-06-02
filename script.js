@@ -87,6 +87,9 @@ function increaseStage() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  const triangleContainer = document.querySelector(".triangle-container");
+  const crossContainer = document.querySelector(".cross-container");
+
   triangleContainer.addEventListener("click", function () {
     // Hide the triangle container
     triangleContainer.style.opacity = "0";
@@ -98,15 +101,14 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         crossContainer.style.opacity = "1";
 
-        // Trigger the hover effect automatically after 5 seconds
+        // Apply the hovered effect to trigger the background color change and scale
+        crossContainer.classList.add("hovered");
         setTimeout(() => {
-          crossContainer.classList.add("hovered");
-          setTimeout(() => {
-            crossContainer.classList.remove("hovered");
-          }, 2000); // Duration of the automatic hover effect
-        }, 0); // Delay before applying the hovered class
-      }, 0); // Ensure this runs after the display is set to block
-    }, 38000); // Duration should match the CSS transition time
+          // Remove the hovered effect after 2 seconds to reset the hover effect
+          crossContainer.classList.remove("hovered");
+        }, 2000); // Duration of the automatic hover effect
+      }, 1500); // Match the opacity transition time
+    }, 36500); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
@@ -160,15 +162,40 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   oneOne.addEventListener("click", function () {
-    increaseStage();
+    circleLeft.classList.toggle("opacity-1");
+    threeThree.classList.toggle("opacity-1");
+    circleRight.classList.toggle("opacity-1");
+    twoTwo.classList.toggle("opacity-1");
+    setTimeout(() => {
+      oneOne.classList.toggle("opacity-1");
+      increaseStage();
+    }, 4000);
   });
 
   twoTwo.addEventListener("click", function () {
-    increaseStage();
+    circleLeft.classList.toggle("opacity-1");
+    threeThree.classList.toggle("opacity-1");
+    oneOne.classList.toggle("opacity-1");
+    circleMiddle.classList.toggle("opacity-1");
+    setTimeout(() => {
+      circleRight.classList.toggle("opacity-1");
+      twoTwo.classList.toggle("opacity-1");
+      circleMiddle.classList.toggle("opacity-1");
+      increaseStage();
+    }, 4000);
   });
 
   threeThree.addEventListener("click", function () {
-    increaseStage();
+    circleRight.classList.toggle("opacity-1");
+    twoTwo.classList.toggle("opacity-1");
+    oneOne.classList.toggle("opacity-1");
+    circleMiddle.classList.toggle("opacity-1");
+    setTimeout(() => {
+      circleLeft.classList.toggle("opacity-1");
+      threeThree.classList.toggle("opacity-1");
+      circleMiddle.classList.toggle("opacity-1");
+      increaseStage();
+    }, 4000);
   });
 
   circleTaskOne.addEventListener("click", increaseSizeCircleClick);
@@ -183,8 +210,12 @@ function abortFlow() {
   explanationTaskThree.pause();
   explanationTaskFour.pause();
   completionCow.pause();
+  completionDonkey.pause();
+  completionPig.pause();
+  task4.pause();
 
   circleLeft.classList.remove("opacity-1");
+  circleRight.classList.remove("opacity-1");
   ///circle left and right to opacity 0 or / and remove opacity-1
 
   //toggle everything from the flow container with opacity 0
@@ -199,6 +230,9 @@ function abortFlow() {
     sticker.classList.toggle("opacity-1");
   }, 15000);
   console.log("abort");
+  setTimeout(() => {
+    location.reload();
+  }, 30000);
 }
 
 function chooseAnimal() {
@@ -372,32 +406,27 @@ function explanationTaskThreeScreen() {
   setTimeout(() => {
     toggleExplanationTaskThree();
   }, 1000);
-}
-
-function chooseDilemma() {
-  crossContainer.classList.toggle("moveDown");
-  crossContainer.classList.toggle("moveUp");
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
     threeThree.classList.toggle("opacity-1");
-  }, 3000);
+  }, 85000);
   setTimeout(() => {
     circleRight.classList.toggle("opacity-1");
     twoTwo.classList.toggle("opacity-1");
-  }, 2000);
+  }, 58000);
   setTimeout(() => {
     oneOne.classList.toggle("opacity-1");
-  }, 1000);
+    crossContainer.classList.toggle("moveDown");
+    crossContainer.classList.toggle("moveUp");
+  }, 33000);
 }
 
+function chooseDilemma() {}
+
 function explanationTaskFourScreen() {
-  oneOne.classList.toggle("opacity-1");
-  twoTwo.classList.toggle("opacity-1");
-  threeThree.classList.toggle("opacity-1");
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
-  circleLeft.classList.toggle("opacity-1");
-  circleRight.classList.toggle("opacity-1");
+
   setTimeout(() => {
     toggleExplanationTaskFour();
   }, 1000);
