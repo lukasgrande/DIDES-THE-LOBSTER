@@ -228,7 +228,7 @@ function abortFlow() {
   }, 100);
   setTimeout(() => {
     sticker.classList.toggle("opacity-1");
-  }, 15000);
+  }, 20000);
   console.log("abort");
   setTimeout(() => {
     location.reload();
@@ -243,16 +243,16 @@ function chooseAnimal() {
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
     three.classList.toggle("opacity-1");
-  }, 1500);
+  }, 3000);
 
   setTimeout(() => {
     circleRight.classList.toggle("opacity-1");
     two.classList.toggle("opacity-1");
-  }, 1000);
+  }, 2000);
 
   setTimeout(() => {
     one.classList.toggle("opacity-1");
-  }, 500);
+  }, 1000);
 }
 
 function explanationTaskOneScreen() {
@@ -409,7 +409,7 @@ function explanationTaskThreeScreen() {
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
     threeThree.classList.toggle("opacity-1");
-  }, 85000);
+  }, 87000);
   setTimeout(() => {
     circleRight.classList.toggle("opacity-1");
     twoTwo.classList.toggle("opacity-1");
