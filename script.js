@@ -242,12 +242,6 @@ function abortFlow() {
   abortContainer.classList.toggle("opacity-1");
 
   setTimeout(() => {
-    one.classList.remove("opacity-1");
-    two.classList.remove("opacity-1");
-    three.classList.remove("opacity-1");
-  }, 2800);
-
-  setTimeout(() => {
     sticker.classList.toggle("opacity-1");
   }, 23000);
   console.log("abort");
@@ -266,28 +260,29 @@ function abortFlow() {
 }
 
 function chooseAnimal() {
-  // Implement logic to show new content for stage 2
-  console.log("Choose Animal Screen for stage 2");
-  //add a new css class to crossContainer
   crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
-    circleLeft.classList.toggle("opacity-1");
-    three.classList.toggle("opacity-1");
+    if (!isAborted) {
+      circleLeft.classList.toggle("opacity-1");
+      three.classList.toggle("opacity-1");
+    }
   }, 3000);
 
   setTimeout(() => {
-    circleRight.classList.toggle("opacity-1");
-    two.classList.toggle("opacity-1");
+    if (!isAborted) {
+      circleRight.classList.toggle("opacity-1");
+      two.classList.toggle("opacity-1");
+    }
   }, 2000);
 
   setTimeout(() => {
-    one.classList.toggle("opacity-1");
+    if (!isAborted) {
+      one.classList.toggle("opacity-1");
+    }
   }, 1000);
 }
 
 function explanationTaskOneScreen() {
-  // Corrected function name
-  // Implement logic to show another new content for stage 3
   console.log("Explanation Task 1 for stage 3");
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
@@ -323,7 +318,6 @@ explanationTaskTwo.addEventListener("ended", function () {
 
 explanationTaskThree.addEventListener("ended", function () {
   console.log("explanationTaskThree finished playing");
-  increaseStage();
 });
 
 explanationTaskFour.addEventListener("ended", function () {
@@ -364,8 +358,6 @@ function increaseSizeCircleClick() {
 }
 
 function explanationTaskTwoScreen() {
-  // Corrected function name
-  // Implement logic to show another new content for stage 5
   console.log("Explanation Task 2 for stage 5");
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
@@ -383,15 +375,21 @@ function countDotsScreen() {
   }, 1000);
 
   setTimeout(() => {
-    eighteen.classList.toggle("opacity-1");
-    circleLeft.classList.toggle("opacity-1");
+    if (!isAborted) {
+      eighteen.classList.toggle("opacity-1");
+      circleLeft.classList.toggle("opacity-1");
+    }
   }, 27000);
   setTimeout(() => {
-    nineteen.classList.toggle("opacity-1");
-    circleRight.classList.toggle("opacity-1");
+    if (!isAborted) {
+      nineteen.classList.toggle("opacity-1");
+      circleRight.classList.toggle("opacity-1");
+    }
   }, 26000);
   setTimeout(() => {
-    thirteen.classList.toggle("opacity-1");
+    if (!isAborted) {
+      thirteen.classList.toggle("opacity-1");
+    }
   }, 25000);
 }
 
@@ -413,16 +411,22 @@ function restartCountDotsScreen() {
     thirteen.classList.toggle("opacity-1");
   }, 270);
   setTimeout(() => {
-    circleLeft.classList.toggle("opacity-1");
-    eighteen.classList.toggle("opacity-1");
+    if (!isAborted) {
+      circleLeft.classList.toggle("opacity-1");
+      eighteen.classList.toggle("opacity-1");
+    }
   }, 27000);
   setTimeout(() => {
-    circleRight.classList.toggle("opacity-1");
-    nineteen.classList.toggle("opacity-1");
+    if (!isAborted) {
+      circleRight.classList.toggle("opacity-1");
+      nineteen.classList.toggle("opacity-1");
+    }
   }, 26000);
 
   setTimeout(() => {
-    thirteen.classList.toggle("opacity-1");
+    if (!isAborted) {
+      thirteen.classList.toggle("opacity-1");
+    }
   }, 25000);
 }
 
@@ -440,26 +444,35 @@ function explanationTaskThreeScreen() {
   setTimeout(() => {
     toggleExplanationTaskThree();
   }, 1000);
+  //if (stage === 7) {
   setTimeout(() => {
-    circleLeft.classList.toggle("opacity-1");
-    threeThree.classList.toggle("opacity-1");
+    if (!isAborted) {
+      circleLeft.classList.toggle("opacity-1");
+      threeThree.classList.toggle("opacity-1");
+    }
   }, 86000);
   setTimeout(() => {
-    circleRight.classList.toggle("opacity-1");
-    twoTwo.classList.toggle("opacity-1");
+    if (!isAborted) {
+      circleRight.classList.toggle("opacity-1");
+      twoTwo.classList.toggle("opacity-1");
+    }
   }, 58000);
   setTimeout(() => {
-    oneOne.classList.toggle("opacity-1");
-    allowUpdate = false;
+    if (!isAborted) {
+      oneOne.classList.toggle("opacity-1");
+      allowUpdate = false;
+    }
   }, 34000);
   setTimeout(() => {
-    crossContainer.classList.toggle("moveDown");
-    crossContainer.classList.toggle("moveUp");
+    if (!isAborted) {
+      crossContainer.classList.toggle("moveDown");
+      crossContainer.classList.toggle("moveUp");
+    }
   }, 32000);
+  //}
 }
 
 function chooseDilemma() {
-  explanationTaskThree.pause();
   increaseStage();
 }
 

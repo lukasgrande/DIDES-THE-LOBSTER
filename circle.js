@@ -156,7 +156,7 @@ function loadExplanationTaskThree() {
   explanationTaskThree.crossOrigin = "anonymous";
   explanationTaskThree.addEventListener("canplay", handleCanplay4);
   explanationTaskThree.addEventListener("error", handleAudioError);
-  explanationTaskThree.src = "assets/audio/TaskThree.mp3";
+  explanationTaskThree.src = "assets/audio/testaudio.mp3";
   explanationTaskThree.load();
   running = true;
 }
