@@ -87,9 +87,6 @@ function increaseStage() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const triangleContainer = document.querySelector(".triangle-container");
-  const crossContainer = document.querySelector(".cross-container");
-
   triangleContainer.addEventListener("click", function () {
     // Hide the triangle container
     triangleContainer.style.opacity = "0";
@@ -106,9 +103,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
           // Remove the hovered effect after 2 seconds to reset the hover effect
           crossContainer.classList.remove("hovered");
-        }, 2000); // Duration of the automatic hover effect
+        }, 1000); // Duration of the automatic hover effect
       }, 1500); // Match the opacity transition time
-    }, 36500); // Delay before showing the cross container
+    }, 100); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
@@ -166,8 +163,9 @@ document.addEventListener("DOMContentLoaded", function () {
     threeThree.classList.toggle("opacity-1");
     circleRight.classList.toggle("opacity-1");
     twoTwo.classList.toggle("opacity-1");
+
+    oneOne.classList.toggle("opacity-1");
     setTimeout(() => {
-      oneOne.classList.toggle("opacity-1");
       increaseStage();
     }, 4000);
   });
@@ -177,10 +175,11 @@ document.addEventListener("DOMContentLoaded", function () {
     threeThree.classList.toggle("opacity-1");
     oneOne.classList.toggle("opacity-1");
     circleMiddle.classList.toggle("opacity-1");
+
+    circleRight.classList.toggle("opacity-1");
+    twoTwo.classList.toggle("opacity-1");
+    circleMiddle.classList.toggle("opacity-1");
     setTimeout(() => {
-      circleRight.classList.toggle("opacity-1");
-      twoTwo.classList.toggle("opacity-1");
-      circleMiddle.classList.toggle("opacity-1");
       increaseStage();
     }, 4000);
   });
@@ -190,10 +189,11 @@ document.addEventListener("DOMContentLoaded", function () {
     twoTwo.classList.toggle("opacity-1");
     oneOne.classList.toggle("opacity-1");
     circleMiddle.classList.toggle("opacity-1");
+
+    circleLeft.classList.toggle("opacity-1");
+    threeThree.classList.toggle("opacity-1");
+    circleMiddle.classList.toggle("opacity-1");
     setTimeout(() => {
-      circleLeft.classList.toggle("opacity-1");
-      threeThree.classList.toggle("opacity-1");
-      circleMiddle.classList.toggle("opacity-1");
       increaseStage();
     }, 4000);
   });
@@ -204,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function abortFlow() {
+  sourceNode = null;
   audio.pause();
   explanationTaskOne.pause();
   explanationTaskTwo.pause();
@@ -216,6 +217,22 @@ function abortFlow() {
 
   circleLeft.classList.remove("opacity-1");
   circleRight.classList.remove("opacity-1");
+  circleTaskOne.classList.remove("opacity-1");
+
+  one.classList.remove("opacity-1");
+  two.classList.remove("opacity-1");
+  three.classList.remove("opacity-1");
+  lottieContainer.classList.remove("opacity-1");
+  lottiePlayer.classList.remove("opacity-1");
+  lottieContainer2.classList.remove("opacity-1");
+  lottiePlayer2.classList.remove("opacity-1");
+  oneOne.classList.remove("opacity-1");
+  twoTwo.classList.remove("opacity-1");
+  threeThree.classList.remove("opacity-1");
+  thirteen.classList.remove("opacity-1");
+  eighteen.classList.remove("opacity-1");
+  nineteen.classList.remove("opacity-1");
+
   ///circle left and right to opacity 0 or / and remove opacity-1
 
   //toggle everything from the flow container with opacity 0
@@ -223,13 +240,26 @@ function abortFlow() {
   document.body.style = "background: white;";
   flowContainer.classList.toggle("opacity-0");
   abortContainer.classList.toggle("opacity-1");
+
   setTimeout(() => {
-    toggleHappyEnding();
-  }, 100);
+    one.classList.remove("opacity-1");
+    two.classList.remove("opacity-1");
+    three.classList.remove("opacity-1");
+  }, 2800);
+
   setTimeout(() => {
     sticker.classList.toggle("opacity-1");
-  }, 20000);
+  }, 23000);
   console.log("abort");
+  setTimeout(() => {
+    if (stage === 1) {
+      loadHappyEnding();
+      toggleHappyEnding();
+    } else {
+      loadHappyEnding();
+      toggleHappyEnding();
+    }
+  }, 1000);
   setTimeout(() => {
     location.reload();
   }, 30000);
@@ -347,8 +377,10 @@ function explanationTaskTwoScreen() {
 function countDotsScreen() {
   crossContainer.classList.toggle("moveDown");
   crossContainer.classList.toggle("moveUp");
-  lottieContainer.classList.toggle("opacity-1");
-  lottiePlayer.play();
+  setTimeout(() => {
+    lottieContainer.classList.toggle("opacity-1");
+    lottiePlayer.play();
+  }, 1000);
 
   setTimeout(() => {
     eighteen.classList.toggle("opacity-1");
@@ -377,7 +409,9 @@ function restartCountDotsScreen() {
     nineteen.classList.toggle("opacity-1");
   }, 290);
 
-  setTimeout(() => {}, 270);
+  setTimeout(() => {
+    thirteen.classList.toggle("opacity-1");
+  }, 270);
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
     eighteen.classList.toggle("opacity-1");
@@ -409,23 +443,30 @@ function explanationTaskThreeScreen() {
   setTimeout(() => {
     circleLeft.classList.toggle("opacity-1");
     threeThree.classList.toggle("opacity-1");
-  }, 87000);
+  }, 86000);
   setTimeout(() => {
     circleRight.classList.toggle("opacity-1");
     twoTwo.classList.toggle("opacity-1");
   }, 58000);
   setTimeout(() => {
     oneOne.classList.toggle("opacity-1");
+    allowUpdate = false;
+  }, 34000);
+  setTimeout(() => {
     crossContainer.classList.toggle("moveDown");
     crossContainer.classList.toggle("moveUp");
-  }, 33000);
+  }, 32000);
 }
 
-function chooseDilemma() {}
+function chooseDilemma() {
+  explanationTaskThree.pause();
+  increaseStage();
+}
 
 function explanationTaskFourScreen() {
   crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
+  allowUpdate = true;
 
   setTimeout(() => {
     toggleExplanationTaskFour();
