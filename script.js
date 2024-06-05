@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           crossContainer.classList.remove("hovered");
         }, 1000); // Duration of the automatic hover effect
       }, 1500); // Match the opacity transition time
-    }, 36000); // Delay before showing the cross container
+    }, 36300); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
@@ -505,7 +505,7 @@ function restartCountDotsScreen() {
   circleLeft.classList.remove("moveLeftInvert");
   circleRight.classList.remove("opacity-1");
   circleLeft.classList.remove("opacity-1");
-  circleMiddle.classList.remove("opacity-1");
+  circleMiddle2.classList.remove("opacity-1");
 
   lottieContainer.classList.toggle("opacity-0");
   lottiePlayer.stop();
