@@ -43,14 +43,44 @@ canvas {
   color: white;
 }
 
-.moveDown{
-  transform: translateY(40vh);
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0%);
+  }
+  70% {
+    transform: translateY(42vh);
+  }
+  100% {
+    transform: translateY(40vh);
+  }
 }
 
-.moveUp{
+@keyframes moveUp {
+  0% {
+    transform: translateY(40vh);
+  }
+  80% {
+    transform: translateY(-2vh);
+  }
+  100% {
+    transform: translateY(0vh);
+  }
+}
+.moveDown {
   transform: translateY(0vh);
 }
 
+.moveDown {
+  animation: moveDown 1.5s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
+
+.moveUp {
+  transform: translateY(0vh);
+}
+.moveUp {
+  animation: moveUp 1.5s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
 
 .startscreen {
   width: 100%;
@@ -62,7 +92,7 @@ canvas {
   background: rgb(2, 0, 0);
 }
 
-.opacity-0{
+.opacity-0 {
   opacity: 0 !important;
   pointer-events: none;
 }
@@ -71,58 +101,70 @@ canvas {
   opacity: 1 !important;
   pointer-events: auto;
 }
+
 .circle-right {
-  opacity: 1;
   width: 27%;
   height: auto;
   border-radius: 50%;
-  border: 2px solid #FFF;
+  border: 2px solid #fff;
   box-sizing: border-box;
   position: absolute;
   aspect-ratio: 1 / 1;
   transform: translateX(0vw);
   max-width: 374px;
-  transition: opacity 1s; 
-  
+  transition: opacity 1s;
 }
 
 .circle-right.opacity-1 {
-  animation: moveRight 1s ease-in-out forwards; /* Apply the moveRight animation */
+  animation: moveRight 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
 }
 
 @keyframes moveRight {
   0% {
-   transform: translateX(0);
-
+    transform: translateX(0%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(32vw);
+    opacity: 0;
   }
   100% {
-   transform: translateX(30vw)
+    transform: translateX(30vw);
+    opacity: 1;
   }
- }
- @keyframes moveLeft {
+}
+
+@keyframes moveLeft {
   0% {
-   transform: translateX(0);
+    transform: translateX(0%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(-32vw);
+    opacity: 1;
   }
   100% {
-   transform: translateX(-575px);
+    transform: translateX(-30vw);
+    opacity: 1;
   }
- }
-
+}
 
 .circle-left {
-  opacity: 1;
   width: 27%;
   height: auto;
   border-radius: 50%;
-  border: 2px solid #FFF;
+  border: 2px solid #fff;
   box-sizing: border-box;
   position: absolute;
-  transform: translateX(-30vw);
+  transform: translateX(0vw);
   aspect-ratio: 1 / 1;
   max-width: 374px;
   transition: opacity 0.3s;
-  
 }
+.circle-left.opacity-1 {
+  animation: moveLeft 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
+}
+
 
 .circle-middle {
   opacity: 1;
@@ -136,6 +178,21 @@ canvas {
   transform: translateX(0vw);
   aspect-ratio: 1 / 1;
   max-width: 380x;
+  
+}
+
+.circle-middle2 {
+  opacity: 1;
+  width: 25%;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid #FFF;
+  background-color: black;
+  box-sizing: border-box;
+  position: absolute;
+  transform: translateX(0vw);
+  aspect-ratio: 1 / 1;
+  max-width: 374x;
   
 }
 .thirteen-container{
@@ -339,34 +396,27 @@ canvas {
   transform: scale(1.5);
 }
 
-.cross-container:hover::before,
-.cross-container.hovered::before {
-  content: "";
-  position: fixed;
-  top: -200px;
-  left: -1000px;
-  width: 10000px;
-  height: 10000px;
-  background-color: red;
-  opacity: 1; /* Adjust opacity as needed */
-  z-index: 0; /* Ensure it's below the cross */
-  pointer-events: none; /* Ensure the overlay does not block interactions */
-  transition: background-color 0.5s ease-in-out;
-}
-
-.cross-container:hover::after,
-.cross-container.hovered::after {
+.cross-container::before,
+.cross-container::after {
   content: "";
   position: fixed;
   top: -1000px;
   left: -1000px;
   width: 10000px;
   height: 10000px;
-  background-color: red;
-  opacity: 1; /* Adjust opacity as needed */
+  background-color: black;
+  opacity: 0; /* Start with opacity 0 */
   z-index: 0; /* Ensure it's below the cross */
   pointer-events: none; /* Ensure the overlay does not block interactions */
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.cross-container:hover::before,
+.cross-container.hovered::before,
+.cross-container:hover::after,
+.cross-container.hovered::after {
+  background-color: red;
+  opacity: 1; /* Change opacity to 1 on hover */
 }
 
 .cross {
@@ -377,13 +427,8 @@ canvas {
   z-index: 2; /* Ensure the cross is above the red overlay */
 }
 
-/* Initial state for the red overlay effect */
-.cross-container::before,
-.cross-container::after {
-  content: "";
-  background-color: black;
-  transition: background-color 0.5s ease-in-out;
-}
+
+
 
 
 .lottie-container {

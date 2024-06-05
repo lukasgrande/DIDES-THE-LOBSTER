@@ -12,6 +12,7 @@ const two = document.getElementById("two-container");
 const twoTwo = document.getElementById("twoTwo-container");
 const circleMiddle = document.getElementById("circle-middle");
 const one = document.getElementById("one-container");
+const circleMiddle2 = document.getElementById("circle-middle2");
 const oneOne = document.getElementById("oneOne-container");
 const flowContainer = document.getElementById("flow-container");
 const abortContainer = document.getElementById("abort-container");
@@ -105,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           crossContainer.classList.remove("hovered");
         }, 1000); // Duration of the automatic hover effect
       }, 1500); // Match the opacity transition time
-    }, 100); // Delay before showing the cross container
+    }, 36500); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
@@ -159,49 +160,43 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   oneOne.addEventListener("click", function () {
-    circleLeft.classList.toggle("opacity-1");
-    threeThree.classList.toggle("opacity-1");
-    circleRight.classList.toggle("opacity-1");
-    twoTwo.classList.toggle("opacity-1");
-
-    oneOne.classList.toggle("opacity-1");
+    hideAllElements();
     setTimeout(() => {
       increaseStage();
-    }, 4000);
+    }, 2000);
   });
 
   twoTwo.addEventListener("click", function () {
-    circleLeft.classList.toggle("opacity-1");
-    threeThree.classList.toggle("opacity-1");
-    oneOne.classList.toggle("opacity-1");
-    circleMiddle.classList.toggle("opacity-1");
-
-    circleRight.classList.toggle("opacity-1");
-    twoTwo.classList.toggle("opacity-1");
-    circleMiddle.classList.toggle("opacity-1");
+    hideAllElements();
     setTimeout(() => {
       increaseStage();
-    }, 4000);
+    }, 2000);
   });
 
   threeThree.addEventListener("click", function () {
-    circleRight.classList.toggle("opacity-1");
-    twoTwo.classList.toggle("opacity-1");
-    oneOne.classList.toggle("opacity-1");
-    circleMiddle.classList.toggle("opacity-1");
-
-    circleLeft.classList.toggle("opacity-1");
-    threeThree.classList.toggle("opacity-1");
-    circleMiddle.classList.toggle("opacity-1");
+    hideAllElements();
     setTimeout(() => {
       increaseStage();
-    }, 4000);
+    }, 2000);
   });
 
   circleTaskOne.addEventListener("click", increaseSizeCircleClick);
 
   crossContainer.addEventListener("click", abortFlow);
 });
+function hideAllElements() {
+  circleLeft.classList.remove("opacity-1");
+  circleRight.classList.remove("opacity-1");
+  circleMiddle2.classList.remove("opacity-1");
+  threeThree.classList.remove("opacity-1");
+  twoTwo.classList.remove("opacity-1");
+  oneOne.classList.remove("opacity-1");
+  thirteen.classList.remove("opacity-1");
+  eighteen.classList.remove("opacity-1");
+  nineteen.classList.remove("opacity-1");
+  crossContainer.classList.remove("moveUp");
+  crossContainer.classList.add("moveUp");
+}
 
 function abortFlow() {
   sourceNode = null;
@@ -217,6 +212,7 @@ function abortFlow() {
 
   circleLeft.classList.remove("opacity-1");
   circleRight.classList.remove("opacity-1");
+  circleMiddle2.classList.remove("opacity-1");
   circleTaskOne.classList.remove("opacity-1");
 
   one.classList.remove("opacity-1");
@@ -261,16 +257,19 @@ function abortFlow() {
 
 function chooseAnimal() {
   crossContainer.classList.toggle("moveDown");
+  if (!isAborted) {
+    circleLeft.classList.toggle("opacity-1");
+    circleRight.classList.toggle("opacity-1");
+    circleMiddle2.classList.toggle("opacity-1");
+  }
   setTimeout(() => {
     if (!isAborted) {
-      circleLeft.classList.toggle("opacity-1");
       three.classList.toggle("opacity-1");
     }
   }, 3000);
 
   setTimeout(() => {
     if (!isAborted) {
-      circleRight.classList.toggle("opacity-1");
       two.classList.toggle("opacity-1");
     }
   }, 2000);
@@ -286,6 +285,7 @@ function explanationTaskOneScreen() {
   console.log("Explanation Task 1 for stage 3");
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
+  circleMiddle2.classList.toggle("opacity-1");
   one.classList.toggle("opacity-1");
   two.classList.toggle("opacity-1");
   three.classList.toggle("opacity-1");
@@ -293,7 +293,7 @@ function explanationTaskOneScreen() {
   crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
     toggleExplanationTaskOne();
-  }, 1000);
+  }, 1500);
 }
 
 function taskOne() {
@@ -363,34 +363,41 @@ function explanationTaskTwoScreen() {
   crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
     toggleExplanationTaskTwo();
-  }, 1000);
+  }, 1500);
 }
 
 function countDotsScreen() {
-  crossContainer.classList.toggle("moveDown");
-  crossContainer.classList.toggle("moveUp");
+  setTimeout(() => {
+    crossContainer.classList.toggle("moveDown");
+    crossContainer.classList.toggle("moveUp");
+  }, 25500);
   setTimeout(() => {
     lottieContainer.classList.toggle("opacity-1");
     lottiePlayer.play();
-  }, 1000);
+  }, 1500);
+  setTimeout(() => {
+    if (!isAborted) {
+      circleLeft.classList.toggle("opacity-1");
+      circleRight.classList.toggle("opacity-1");
+      circleMiddle2.classList.toggle("opacity-1");
+    }
+  }, 25500);
 
   setTimeout(() => {
     if (!isAborted) {
       eighteen.classList.toggle("opacity-1");
-      circleLeft.classList.toggle("opacity-1");
     }
-  }, 27000);
+  }, 28500);
   setTimeout(() => {
     if (!isAborted) {
       nineteen.classList.toggle("opacity-1");
-      circleRight.classList.toggle("opacity-1");
     }
-  }, 26000);
+  }, 27500);
   setTimeout(() => {
     if (!isAborted) {
       thirteen.classList.toggle("opacity-1");
     }
-  }, 25000);
+  }, 26500);
 }
 
 function restartCountDotsScreen() {
@@ -413,21 +420,26 @@ function restartCountDotsScreen() {
   setTimeout(() => {
     if (!isAborted) {
       circleLeft.classList.toggle("opacity-1");
-      eighteen.classList.toggle("opacity-1");
+      circleRight.classList.toggle("opacity-1");
+      circleMiddle2.classList.toggle("opacity-1");
     }
-  }, 27000);
+  }, 25500);
+
   setTimeout(() => {
     if (!isAborted) {
-      circleRight.classList.toggle("opacity-1");
+      eighteen.classList.toggle("opacity-1");
+    }
+  }, 28500);
+  setTimeout(() => {
+    if (!isAborted) {
       nineteen.classList.toggle("opacity-1");
     }
-  }, 26000);
-
+  }, 27500);
   setTimeout(() => {
     if (!isAborted) {
       thirteen.classList.toggle("opacity-1");
     }
-  }, 25000);
+  }, 26500);
 }
 
 function explanationTaskThreeScreen() {
@@ -436,6 +448,7 @@ function explanationTaskThreeScreen() {
   console.log("Explanation Task 3 for stage 7");
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
+  circleMiddle2.classList.toggle("opacity-1");
   thirteen.classList.toggle("opacity-1");
   eighteen.classList.toggle("opacity-1");
   nineteen.classList.toggle("opacity-1");
@@ -443,33 +456,67 @@ function explanationTaskThreeScreen() {
   crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
     toggleExplanationTaskThree();
-  }, 1000);
-  //if (stage === 7) {
+  }, 1500);
+
   setTimeout(() => {
-    if (!isAborted) {
-      circleLeft.classList.toggle("opacity-1");
-      threeThree.classList.toggle("opacity-1");
+    if (stage === 7) {
+      if (!isAborted) {
+        circleLeft.classList.toggle("opacity-1");
+      }
     }
-  }, 86000);
+  }, 86500);
+
   setTimeout(() => {
-    if (!isAborted) {
-      circleRight.classList.toggle("opacity-1");
-      twoTwo.classList.toggle("opacity-1");
+    if (stage === 7) {
+      if (!isAborted) {
+        threeThree.classList.toggle("opacity-1");
+      }
     }
-  }, 58000);
+  }, 88500);
+
   setTimeout(() => {
-    if (!isAborted) {
-      oneOne.classList.toggle("opacity-1");
-      allowUpdate = false;
+    if (stage === 7) {
+      if (!isAborted) {
+        circleRight.classList.toggle("opacity-1");
+      }
     }
-  }, 34000);
+  }, 58500);
+
   setTimeout(() => {
-    if (!isAborted) {
-      crossContainer.classList.toggle("moveDown");
-      crossContainer.classList.toggle("moveUp");
+    if (stage === 7) {
+      if (!isAborted) {
+        twoTwo.classList.toggle("opacity-1");
+      }
     }
-  }, 32000);
-  //}
+  }, 60500);
+
+  setTimeout(() => {
+    if (stage === 7) {
+      if (!isAborted) {
+        circleMiddle2.classList.toggle("opacity-1");
+
+        allowUpdate = false;
+      }
+    }
+  }, 34500);
+
+  setTimeout(() => {
+    if (stage === 7) {
+      if (!isAborted) {
+        oneOne.classList.toggle("opacity-1");
+        allowUpdate = false;
+      }
+    }
+  }, 36500);
+
+  setTimeout(() => {
+    if (stage === 7) {
+      if (!isAborted) {
+        crossContainer.classList.toggle("moveDown");
+        crossContainer.classList.toggle("moveUp");
+      }
+    }
+  }, 32500);
 }
 
 function chooseDilemma() {
@@ -477,33 +524,30 @@ function chooseDilemma() {
 }
 
 function explanationTaskFourScreen() {
-  crossContainer.classList.toggle("moveUp");
   crossContainer.classList.toggle("moveDown");
   allowUpdate = true;
 
   setTimeout(() => {
     toggleExplanationTaskFour();
-  }, 1000);
+  }, 1500);
 }
 
 function goThroughIt() {
-  crossContainer.classList.toggle("moveDown");
-  crossContainer.classList.toggle("moveUp");
   circleMiddle.classList.toggle("opacity-0");
   setTimeout(() => {
     circleMiddle.classList.toggle("opacity-1");
-  }, 1500);
+  }, 2000);
   setTimeout(() => {
     lottieContainer2.classList.toggle("opacity-1");
     lottiePlayer2.play();
     playAwful();
-  }, 2000);
+  }, 2500);
 
   setTimeout(() => {
     lottiePlayer2.pause();
     increaseStage();
     crossContainer.classList.toggle("opacity-0");
-  }, 132000);
+  }, 132500);
 }
 
 function completionAudio() {
@@ -511,7 +555,7 @@ function completionAudio() {
   setTimeout(() => {
     circleMiddle.classList.toggle("opacity-1");
     circleMiddle.classList.toggle("opacity-0");
-  }, 1000);
+  }, 1500);
 
   setTimeout(() => {
     console.log("completionCow paused:", completionCow.paused);
@@ -528,10 +572,10 @@ function completionAudio() {
       console.log("user chose pig");
       togglecompletionPig();
     }
-  }, 2000);
+  }, 2500);
   setTimeout(() => {
     location.reload();
-  }, 39000);
+  }, 39500);
 }
 
 function reload() {
