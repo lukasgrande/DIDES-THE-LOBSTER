@@ -80,11 +80,34 @@ canvas {
   box-sizing: border-box;
   position: absolute;
   aspect-ratio: 1 / 1;
-  transform: translateX(30vw);
+  transform: translateX(0vw);
   max-width: 374px;
-  transition: opacity 0.3s; 
+  transition: opacity 1s; 
   
 }
+
+.circle-right.opacity-1 {
+  animation: moveRight 1s ease-in-out forwards; /* Apply the moveRight animation */
+}
+
+@keyframes moveRight {
+  0% {
+   transform: translateX(0);
+
+  }
+  100% {
+   transform: translateX(30vw)
+  }
+ }
+ @keyframes moveLeft {
+  0% {
+   transform: translateX(0);
+  }
+  100% {
+   transform: translateX(-575px);
+  }
+ }
+
 
 .circle-left {
   opacity: 1;
