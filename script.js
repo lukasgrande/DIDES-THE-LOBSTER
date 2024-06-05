@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           crossContainer.classList.remove("hovered");
         }, 1000); // Duration of the automatic hover effect
       }, 1500); // Match the opacity transition time
-    }, 100); // Delay before showing the cross container
+    }, 36000); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
