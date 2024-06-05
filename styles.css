@@ -149,6 +149,28 @@ canvas {
   }
 }
 
+@keyframes moveLeftInvert {
+  0% {
+    transform: translateX(-30vw);
+
+  }
+  100% {
+    transform: translateX(0vw);
+  
+  }
+}
+
+@keyframes moveRightInvert {
+  0% {
+    transform: translateX(30vw);
+    
+  }
+  100% {
+    transform: translateX(0vw);
+    
+  }
+}
+
 .circle-left {
   width: 27%;
   height: auto;
@@ -164,6 +186,10 @@ canvas {
 .circle-left.opacity-1 {
   animation: moveLeft 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
 }
+
+/* .circle-left.opacity-1 {
+  animation: moveLeftInvert 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation }*/
+
 
 
 .circle-middle {

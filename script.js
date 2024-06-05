@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           crossContainer.classList.remove("hovered");
         }, 1000); // Duration of the automatic hover effect
       }, 1500); // Match the opacity transition time
-    }, 36500); // Delay before showing the cross container
+    }, 36000); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
@@ -464,7 +464,7 @@ function explanationTaskThreeScreen() {
         circleLeft.classList.toggle("opacity-1");
       }
     }
-  }, 86500);
+  }, 85000);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -472,7 +472,7 @@ function explanationTaskThreeScreen() {
         threeThree.classList.toggle("opacity-1");
       }
     }
-  }, 88500);
+  }, 87000);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -480,7 +480,7 @@ function explanationTaskThreeScreen() {
         circleRight.classList.toggle("opacity-1");
       }
     }
-  }, 58500);
+  }, 57000);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -488,7 +488,7 @@ function explanationTaskThreeScreen() {
         twoTwo.classList.toggle("opacity-1");
       }
     }
-  }, 60500);
+  }, 59000);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -507,7 +507,7 @@ function explanationTaskThreeScreen() {
         allowUpdate = false;
       }
     }
-  }, 36500);
+  }, 34000);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -536,12 +536,12 @@ function goThroughIt() {
   circleMiddle.classList.toggle("opacity-0");
   setTimeout(() => {
     circleMiddle.classList.toggle("opacity-1");
-  }, 2000);
+  }, 1000);
   setTimeout(() => {
     lottieContainer2.classList.toggle("opacity-1");
     lottiePlayer2.play();
     playAwful();
-  }, 2500);
+  }, 1500);
 
   setTimeout(() => {
     lottiePlayer2.pause();
