@@ -106,37 +106,109 @@ document.addEventListener("DOMContentLoaded", function () {
           crossContainer.classList.remove("hovered");
         }, 1000); // Duration of the automatic hover effect
       }, 1500); // Match the opacity transition time
-    }, 36000); // Delay before showing the cross container
+    }, 100); // Delay before showing the cross container
   });
 
   eighteen.addEventListener("click", function () {
-    increaseStage();
+    eighteen.classList.remove("opacity-1");
+    nineteen.classList.remove("opacity-1");
+    thirteen.classList.remove("opacity-1");
+    setTimeout(() => {
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        increaseStage();
+      }, 1200);
+    }, 500);
   });
   nineteen.addEventListener("click", function () {
     if (stage == 6) {
-      restartCountDotsScreen();
+      eighteen.classList.remove("opacity-1");
+      nineteen.classList.remove("opacity-1");
+      thirteen.classList.remove("opacity-1");
+      setTimeout(() => {
+        circleRight.classList.toggle("moveRightInvert");
+        circleLeft.classList.toggle("moveLeftInvert");
+        crossContainer.classList.toggle("moveUp");
+        crossContainer.classList.toggle("moveDown");
+
+        setTimeout(() => {
+          restartCountDotsScreen();
+        }, 1200);
+      }, 500);
     } else {
       increaseStage();
     }
   });
   thirteen.addEventListener("click", function () {
     if (stage == 6) {
-      restartCountDotsScreen();
+      eighteen.classList.remove("opacity-1");
+      nineteen.classList.remove("opacity-1");
+      thirteen.classList.remove("opacity-1");
+      setTimeout(() => {
+        circleRight.classList.toggle("moveRightInvert");
+        circleLeft.classList.toggle("moveLeftInvert");
+        crossContainer.classList.toggle("moveUp");
+        crossContainer.classList.toggle("moveDown");
+
+        setTimeout(() => {
+          restartCountDotsScreen();
+        }, 1200);
+      }, 500);
     } else {
       increaseStage();
     }
   });
   one.addEventListener("click", function () {
     chosenAnimal = "donkey";
-    increaseStage();
+    two.classList.remove("opacity-1");
+    three.classList.remove("opacity-1");
+    one.classList.remove("opacity-1");
+    setTimeout(() => {
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        increaseStage();
+      }, 1200);
+    }, 500);
   });
   two.addEventListener("click", function () {
     chosenAnimal = "pig";
-    increaseStage();
+    two.classList.remove("opacity-1");
+    three.classList.remove("opacity-1");
+    one.classList.remove("opacity-1");
+    setTimeout(() => {
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        increaseStage();
+      }, 1200);
+    }, 500);
   });
   three.addEventListener("click", function () {
     chosenAnimal = "cow";
-    increaseStage();
+    two.classList.remove("opacity-1");
+    three.classList.remove("opacity-1");
+    one.classList.remove("opacity-1");
+    setTimeout(() => {
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        increaseStage();
+      }, 1200);
+    }, 500);
   });
   three.addEventListener("mouseenter", function () {
     playCow();
@@ -160,24 +232,54 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   oneOne.addEventListener("click", function () {
-    hideAllElements();
+    twoTwo.classList.remove("opacity-1");
+    threeThree.classList.remove("opacity-1");
+    oneOne.classList.remove("opacity-1");
     setTimeout(() => {
-      increaseStage();
-    }, 2000);
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        hideAllElements();
+        increaseStage();
+      }, 3000);
+    }, 500);
   });
 
   twoTwo.addEventListener("click", function () {
-    hideAllElements();
+    twoTwo.classList.remove("opacity-1");
+    threeThree.classList.remove("opacity-1");
+    oneOne.classList.remove("opacity-1");
     setTimeout(() => {
-      increaseStage();
-    }, 2000);
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        hideAllElements();
+        increaseStage();
+      }, 3000);
+    }, 500);
   });
 
   threeThree.addEventListener("click", function () {
-    hideAllElements();
+    twoTwo.classList.remove("opacity-1");
+    threeThree.classList.remove("opacity-1");
+    oneOne.classList.remove("opacity-1");
     setTimeout(() => {
-      increaseStage();
-    }, 2000);
+      circleRight.classList.toggle("moveRightInvert");
+      circleLeft.classList.toggle("moveLeftInvert");
+      crossContainer.classList.toggle("moveUp");
+      crossContainer.classList.toggle("moveDown");
+
+      setTimeout(() => {
+        hideAllElements();
+        increaseStage();
+      }, 3000);
+    }, 500);
   });
 
   circleTaskOne.addEventListener("click", increaseSizeCircleClick);
@@ -194,8 +296,6 @@ function hideAllElements() {
   thirteen.classList.remove("opacity-1");
   eighteen.classList.remove("opacity-1");
   nineteen.classList.remove("opacity-1");
-  crossContainer.classList.remove("moveUp");
-  crossContainer.classList.add("moveUp");
 }
 
 function abortFlow() {
@@ -286,11 +386,11 @@ function explanationTaskOneScreen() {
   circleLeft.classList.toggle("opacity-1");
   circleRight.classList.toggle("opacity-1");
   circleMiddle2.classList.toggle("opacity-1");
-  one.classList.toggle("opacity-1");
-  two.classList.toggle("opacity-1");
-  three.classList.toggle("opacity-1");
-  crossContainer.classList.toggle("moveUp");
-  crossContainer.classList.toggle("moveDown");
+  circleRight.classList.remove("moveRightInvert");
+  circleLeft.classList.remove("moveLeftInvert");
+
+  //crossContainer.classList.toggle("moveUp");
+  //crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
     toggleExplanationTaskOne();
   }, 1500);
@@ -401,27 +501,23 @@ function countDotsScreen() {
 }
 
 function restartCountDotsScreen() {
+  circleRight.classList.remove("moveRightInvert");
+  circleLeft.classList.remove("moveLeftInvert");
+  circleRight.classList.remove("opacity-1");
+  circleLeft.classList.remove("opacity-1");
+  circleMiddle.classList.remove("opacity-1");
+
   lottieContainer.classList.toggle("opacity-0");
   lottiePlayer.stop();
   lottiePlayer.play();
 
   setTimeout(() => {
-    circleLeft.classList.toggle("opacity-1");
-    eighteen.classList.toggle("opacity-1");
-  }, 310);
-  setTimeout(() => {
-    circleRight.classList.toggle("opacity-1");
-    nineteen.classList.toggle("opacity-1");
-  }, 290);
-
-  setTimeout(() => {
-    thirteen.classList.toggle("opacity-1");
-  }, 270);
-  setTimeout(() => {
     if (!isAborted) {
       circleLeft.classList.toggle("opacity-1");
       circleRight.classList.toggle("opacity-1");
       circleMiddle2.classList.toggle("opacity-1");
+      crossContainer.classList.toggle("moveDown");
+      crossContainer.classList.toggle("moveUp");
     }
   }, 25500);
 
@@ -446,14 +542,12 @@ function explanationTaskThreeScreen() {
   // Corrected function name
   // Implement logic to show another new content for stage 5
   console.log("Explanation Task 3 for stage 7");
-  circleLeft.classList.toggle("opacity-1");
-  circleRight.classList.toggle("opacity-1");
-  circleMiddle2.classList.toggle("opacity-1");
-  thirteen.classList.toggle("opacity-1");
-  eighteen.classList.toggle("opacity-1");
-  nineteen.classList.toggle("opacity-1");
-  crossContainer.classList.toggle("moveUp");
-  crossContainer.classList.toggle("moveDown");
+  circleLeft.classList.remove("opacity-1");
+  circleRight.classList.remove("opacity-1");
+  circleMiddle2.classList.remove("opacity-1");
+  circleLeft.classList.remove("moveLeftInvert");
+  circleRight.classList.remove("moveRightInvert");
+
   setTimeout(() => {
     toggleExplanationTaskThree();
   }, 1500);
@@ -524,7 +618,6 @@ function chooseDilemma() {
 }
 
 function explanationTaskFourScreen() {
-  crossContainer.classList.toggle("moveDown");
   allowUpdate = true;
 
   setTimeout(() => {

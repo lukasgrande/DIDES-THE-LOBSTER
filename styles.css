@@ -119,6 +119,15 @@ canvas {
   animation: moveRight 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
 }
 
+.circle-right.moveRightInvert{
+  animation: moveRightInvert 1s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
+}
+
+.two-container.moveRightInvert{
+  animation: moveRightInvert 1s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
+}
+
+
 @keyframes moveRight {
   0% {
     transform: translateX(0%);
@@ -133,7 +142,16 @@ canvas {
     opacity: 1;
   }
 }
-
+@keyframes moveRightInvert {
+  0% {
+    transform: translateX(30vw);
+    
+  }
+  100% {
+    transform: translateX(0vw);
+    
+  }
+}
 @keyframes moveLeft {
   0% {
     transform: translateX(0%);
@@ -160,16 +178,8 @@ canvas {
   }
 }
 
-@keyframes moveRightInvert {
-  0% {
-    transform: translateX(30vw);
-    
-  }
-  100% {
-    transform: translateX(0vw);
-    
-  }
-}
+
+
 
 .circle-left {
   width: 27%;
@@ -186,10 +196,13 @@ canvas {
 .circle-left.opacity-1 {
   animation: moveLeft 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
 }
+.circle-left.moveLeftInvert{
+  animation: moveLeftInvert 1s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
+}
 
-/* .circle-left.opacity-1 {
-  animation: moveLeftInvert 1.5s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation }*/
-
+.three-container.moveLeftInvert{
+  animation: moveLeftInvert 1s cubic-bezier(1, 0, 0.5, 1) forwards; /* Apply the moveRight animation */
+}
 
 
 .circle-middle {
