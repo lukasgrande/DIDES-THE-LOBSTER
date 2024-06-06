@@ -366,19 +366,19 @@ function chooseAnimal() {
     if (!isAborted) {
       three.classList.toggle("opacity-1");
     }
-  }, 3000);
+  }, 1350);
 
   setTimeout(() => {
     if (!isAborted) {
       two.classList.toggle("opacity-1");
     }
-  }, 2000);
+  }, 1350);
 
   setTimeout(() => {
     if (!isAborted) {
       one.classList.toggle("opacity-1");
     }
-  }, 1000);
+  }, 1350);
 }
 
 function explanationTaskOneScreen() {
@@ -393,7 +393,7 @@ function explanationTaskOneScreen() {
   //crossContainer.classList.toggle("moveDown");
   setTimeout(() => {
     toggleExplanationTaskOne();
-  }, 1500);
+  }, 1000);
 }
 
 function taskOne() {
@@ -487,17 +487,17 @@ function countDotsScreen() {
     if (!isAborted) {
       eighteen.classList.toggle("opacity-1");
     }
-  }, 28500);
+  }, 26850);
   setTimeout(() => {
     if (!isAborted) {
       nineteen.classList.toggle("opacity-1");
     }
-  }, 27500);
+  }, 26850);
   setTimeout(() => {
     if (!isAborted) {
       thirteen.classList.toggle("opacity-1");
     }
-  }, 26500);
+  }, 26850);
 }
 
 function restartCountDotsScreen() {
@@ -525,17 +525,17 @@ function restartCountDotsScreen() {
     if (!isAborted) {
       eighteen.classList.toggle("opacity-1");
     }
-  }, 28500);
+  }, 26850);
   setTimeout(() => {
     if (!isAborted) {
       nineteen.classList.toggle("opacity-1");
     }
-  }, 27500);
+  }, 26850);
   setTimeout(() => {
     if (!isAborted) {
       thirteen.classList.toggle("opacity-1");
     }
-  }, 26500);
+  }, 26850);
 }
 
 function explanationTaskThreeScreen() {
@@ -566,7 +566,7 @@ function explanationTaskThreeScreen() {
         threeThree.classList.toggle("opacity-1");
       }
     }
-  }, 87000);
+  }, 86350);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -582,7 +582,7 @@ function explanationTaskThreeScreen() {
         twoTwo.classList.toggle("opacity-1");
       }
     }
-  }, 59000);
+  }, 58350);
 
   setTimeout(() => {
     if (stage === 7) {
@@ -601,7 +601,7 @@ function explanationTaskThreeScreen() {
         allowUpdate = false;
       }
     }
-  }, 34000);
+  }, 33900);
 
   setTimeout(() => {
     if (stage === 7) {

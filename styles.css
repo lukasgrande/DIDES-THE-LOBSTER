@@ -381,8 +381,8 @@ canvas {
 
 .circle-taskOne {
   opacity: 1;
-  width: 25%;
-  height: auto;
+  width: 25vw;
+  height: 25vw;
   border-radius: 50%;
   border: 2px solid #FFF;
   background-color: black;
@@ -392,7 +392,7 @@ canvas {
   aspect-ratio: 1 / 1;
   cursor: pointer;
   z-index: 2;
-  transition: width 1s ease-in-out, height 1s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for width, height, and opacity */
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for width, height, and opacity */
 }
 
 .triangle-container {

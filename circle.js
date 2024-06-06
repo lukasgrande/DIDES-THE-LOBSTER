@@ -114,7 +114,7 @@ function loadAudio() {
   // call `handleCanplay` when music can be played
   audio.addEventListener("canplay", handleCanplay);
   // Change the URL here accordingly
-  audio.src = "assets/audio/Intro.mp3"; // Local sound file
+  audio.src = "assets/audio/testaudio.mp3"; // Local sound file
   audio.load();
   running = true;
 }
@@ -128,7 +128,7 @@ function loadExplanationTaskOne() {
   explanationTaskOne.crossOrigin = "anonymous";
   explanationTaskOne.addEventListener("canplay", handleCanplay2);
   explanationTaskOne.addEventListener("error", handleAudioError); // Add error event listener
-  explanationTaskOne.src = "assets/audio/TaskOne.mp3"; // Local sound file for the second audio
+  explanationTaskOne.src = "assets/audio/testaudio.mp3"; // Local sound file for the second audio
   explanationTaskOne.load();
   running = true;
 }
@@ -142,7 +142,7 @@ function loadExplanationTaskTwo() {
   explanationTaskTwo.crossOrigin = "anonymous";
   explanationTaskTwo.addEventListener("canplay", handleCanplay3);
   explanationTaskTwo.addEventListener("error", handleAudioError); // Add error event listener
-  explanationTaskTwo.src = "assets/audio/TaskTwo.mp3"; // Local sound file for the second audio
+  explanationTaskTwo.src = "assets/audio/testaudio.mp3"; // Local sound file for the second audio
   explanationTaskTwo.load();
   running = true;
 }
@@ -156,7 +156,7 @@ function loadExplanationTaskThree() {
   explanationTaskThree.crossOrigin = "anonymous";
   explanationTaskThree.addEventListener("canplay", handleCanplay4);
   explanationTaskThree.addEventListener("error", handleAudioError);
-  explanationTaskThree.src = "assets/audio/TaskThree.mp3";
+  explanationTaskThree.src = "assets/audio/testaudio.mp3";
   explanationTaskThree.load();
   running = true;
 }
