@@ -352,7 +352,7 @@ function abortFlow() {
   }, 1000);
   setTimeout(() => {
     location.reload();
-  }, 30000);
+  }, 35000);
 }
 
 function chooseAnimal() {
